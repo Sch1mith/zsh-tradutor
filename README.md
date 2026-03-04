@@ -12,16 +12,17 @@ Dependencias:
  - oh my Zsh!
 ***
 
-Instalando:
+#### Instalando:
 
 baixe e coloque o plugin em home/<user>/.oh-my-zsh/custom/plugins/zsh-tradutor
 depois adicione o plugin na lista de plugins do .zshrc
-`plugins=(git zsh-tradutor)`
 separe os plugins por espaço
+exemplo: `plugins=(git zsh-tradutor)`
+***
 
+#### Como usar: 
 
-como usar: 
+default: português -> inglês
 
-    default: inglês para português
-    `tra` + <termo em inglês>: retorna tradução em português
-    `tra en` + <termo em português>: retorna tradução em inglês
+    `tra` + <termo em português>: retorna tradução em inglês
+    `tra en` + <termo em inglês>: retorna tradução em português
