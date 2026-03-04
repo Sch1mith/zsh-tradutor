@@ -3,11 +3,21 @@
 function tra() {
 
   input="$*"
-  query="${input// /+}"
+  
+  [[ -z "$input" ]] && return
+
+  input_limpo=$(echo "$input" | iconv -f UTF-8 -t ASCII//TRANSLIT \
+    2>/dev/null | tr -cd '[:alnum:] ')
+
+  [[ -z "$input_limpo" ]] && input_limpo="$input"
+  
+  query="${input_limpo// /+}"
 
   if [[ "$1" == "en" ]]; then
     input="${@[2,-1]}"
-    query="${input// /+}"
+    input_limpo=$(echo "$input" | iconv -f UTF-8 -t ASCII//TRANSLIT \ 
+      2>/dev//null | tr -cd '[:alnum:] ')
+    query="${input_limpo// /+}"
     url="https://translate.google.com/m?sl=en&tl=pt&q=${query}"
   else
     url="https://translate.google.com/m?sl=pt&tl=en&q=${query}"
@@ -24,4 +34,5 @@ function tra() {
     echo "Erro: não foi possivel traduzir"
   fi
 
+  unset input query url traducao texto_limpo
 }
