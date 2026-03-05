@@ -6,20 +6,18 @@ function tra() {
   
   [[ -z "$input" ]] && return
 
-  input_limpo=$(echo "$input" | iconv -f UTF-8 -t ASCII//TRANSLIT \
-    2>/dev/null | tr -cd '[:alnum:] ')
-
-  [[ -z "$input_limpo" ]] && input_limpo="$input"
   
-  query="${input_limpo// /+}"
-
   if [[ "$1" == "en" ]]; then
     input="${@[2,-1]}"
-    input_limpo=$(echo "$input" | iconv -f UTF-8 -t ASCII//TRANSLIT \ 
-      2>/dev//null | tr -cd '[:alnum:] ')
+    input_limpo=$(echo "$input" | iconv -f UTF-8 -t ASCII//TRANSLIT \
+      2>/dev/null | tr -cd '[:alnum:] ')
     query="${input_limpo// /+}"
     url="https://translate.google.com/m?sl=en&tl=pt&q=${query}"
   else
+    input_limpo=$(echo "$input" | iconv -f UTF-8 -t ASCII//TRANSLIT \
+      2>/dev/null | tr -cd '[:alnum:] ')
+    [[ -z "$input_limpo" ]] && input_limpo="$input"
+    query="${input_limpo// /+}"
     url="https://translate.google.com/m?sl=pt&tl=en&q=${query}"
   fi 
   
