@@ -34,5 +34,5 @@ function tra() {
     echo "Erro: não foi possivel traduzir"
   fi
 
-  unset input query url traducao input_limpo
+  unset input query url traducao texto_limpo
 }
